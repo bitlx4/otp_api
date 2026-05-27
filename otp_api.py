@@ -9,9 +9,11 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://otp-api-kc55.onrender.com"], 
-    allow_credentials=False,    # change these origin, methods, setting after deploy othewise it will attract the hackers
-    allow_methods=["*"],  
+    allow_origins=[
+        "https://otp-api-kc55.onrender.com"
+    ],
+    allow_credentials=True,
+    allow_methods=["POST", "GET", "OPTIONS"],
     allow_headers=["*"],
 )
 
