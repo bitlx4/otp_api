@@ -1,3 +1,5 @@
-sib-api-v3-sdk
 fastapi
 uvicorn
+mysql-connector-python
+sib-api-v3-sdk
+python-dotenv
