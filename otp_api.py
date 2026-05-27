@@ -86,6 +86,8 @@ def send_otp(to_email:str = Body(...)):
                 return {"message": "OTP already exists"}
         else:
             return {"message": "user not found please sign up first"}
+    except mysql.connector.Error as err:
+        return {"message": "Database connection failed", "error": str(err)}
     finally:
         cursor.close()
         db.close()
