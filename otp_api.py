@@ -25,7 +25,7 @@ def read_root():
     return {"your api is working"}
 
 @app.post("/send_otp")
-def send_otp(to_email:str = Body(...)):
+def send_otp(request_data:OTPRequest):
     
     to_email = request_data.to_email
 
