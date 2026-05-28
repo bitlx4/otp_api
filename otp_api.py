@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 from fastapi import Body
 from fastapi.middleware.cors import CORSMiddleware
-import random, os, mysql.connector
+import random, os 
+import mysql.connector
+from pydantic import BaseModel
 import sib_api_v3_sdk
 from sib_api_v3_sdk.rest import ApiException
 
@@ -15,12 +17,21 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+class OTPRequest(BaseModel):
+    to_email: str
+
 @app.get("/")
 def read_root():
     return {"your api is working"}
 
 @app.post("/send_otp")
 def send_otp(to_email:str = Body(...)):
+    
+    to_email = request_data.to_email
+
+    db = None
+    cursor = None
+    
     try:
         db = mysql.connector.connect(
         host=os.environ.get("DB_HOST"),
